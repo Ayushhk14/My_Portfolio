@@ -28,8 +28,8 @@ function About() {
               </h3>
               <p className="text-slate-300 leading-relaxed mb-6">
                 I'm a Computer Science Engineering student at Shriram Institute of Science and Technology, 
-                Jabalpur, graduating in 2026 with a CGPA of 8.03. Currently working as an Engineering 
-                Analyst Intern at ADRS Technosoft, where I develop backend APIs and support ERP systems.
+                Jabalpur, graduating in 2026 with a CGPA of 8.03. Currently working as an Python Development 
+                Intern at ADRS Techno, where I develop backend APIs and support ERP systems.
               </p>
               <p className="text-slate-300 leading-relaxed">
                 My experience includes Python backend development, REST API creation, ERPNext/Frappe 
