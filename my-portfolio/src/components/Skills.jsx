@@ -281,28 +281,31 @@ function Skills() {
       <div className="container">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className={`${isMobile ? 'text-3xl' : 'text-4xl md:text-5xl'} font-bold text-white mb-6`}>
             Skills & Technologies
           </h2>
-          <p className="text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-            Click on any skill to learn more about my experience and how I use it in projects
+          <p className={`${isMobile ? 'text-lg' : 'text-xl'} text-slate-400 max-w-3xl mx-auto leading-relaxed px-4`}>
+            {isMobile 
+              ? 'Tap any skill to learn more about my experience'
+              : 'Click on any skill to learn more about my experience and how I use it in projects'
+            }
           </p>
         </div>
 
         {/* Main Content Layout */}
         <div className="max-w-7xl mx-auto">
-          <div className={`${isMobile ? 'flex flex-col gap-8' : 'grid grid-cols-4 gap-8'}`}>
+          <div className={`${isMobile ? 'flex flex-col gap-6' : 'grid grid-cols-4 gap-8'}`}>
             
             {/* Skills Categories Grid */}
             <div className={`${isMobile ? 'order-1' : 'col-span-3'}`}>
               <div className="skills-grid-container">
                 {Object.entries(skillsData).map(([categoryKey, category]) => (
-                  <div key={categoryKey} className="category-card bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-700/50 p-6">
+                  <div key={categoryKey} className={`category-card bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-700/50 ${isMobile ? 'p-4' : 'p-6'}`}>
                     {/* Category Header */}
                     <div className="flex items-center mb-4">
-                      <span className="text-2xl mr-3">{category.icon}</span>
+                      <span className={`${isMobile ? 'text-xl' : 'text-2xl'} mr-3`}>{category.icon}</span>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white">{category.title}</h3>
+                        <h3 className={`${isMobile ? 'text-base' : 'text-lg'} font-semibold text-white`}>{category.title}</h3>
                         <span className="text-xs text-slate-400">
                           {category.skills.length} skills
                         </span>
@@ -317,14 +320,16 @@ function Skills() {
                           data-skill-id={skill.id}
                           onClick={() => handleSkillClick(skill)}
                           className={`
-                            skill-button skill-transition p-3 rounded-lg text-left border-2 text-sm
+                            skill-button skill-transition rounded-lg text-center border-2 
+                            ${isMobile ? 'p-3 text-sm min-h-[48px]' : 'p-3 text-sm'} 
                             ${selectedSkill?.id === skill.id 
                               ? 'bg-cyan-500/20 border-cyan-400/50 text-cyan-400 shadow-lg shadow-cyan-500/10' 
                               : 'bg-slate-700/60 border-slate-600/40 text-slate-400 hover:bg-slate-700/80 hover:border-slate-600/60 hover:text-slate-200'
                             }
+                            ${isMobile ? 'flex flex-col items-center justify-center gap-2' : 'text-left'}
                           `}
                         >
-                          <div className="font-medium leading-tight mb-1">
+                          <div className={`font-medium leading-tight ${isMobile ? 'text-center' : 'mb-1'}`}>
                             {skill.name}
                           </div>
                           <div className={`text-xs px-2 py-0.5 rounded-full inline-block ${getLevelColor(skill.level)}`}>
@@ -341,10 +346,10 @@ function Skills() {
               {isMobile && selectedSkill && (
                 <div 
                   ref={skillDetailRef}
-                  className="skill-detail-panel mt-8 p-6 bg-slate-800/80 backdrop-blur-sm rounded-xl border border-cyan-400/40 animate-fadeIn"
+                  className="skill-detail-panel mt-6 p-5 bg-slate-800/80 backdrop-blur-sm rounded-xl border border-cyan-400/40 animate-fadeIn"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-xl font-semibold text-white">{selectedSkill.name}</h4>
+                    <h4 className="text-lg font-semibold text-white">{selectedSkill.name}</h4>
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getLevelColor(selectedSkill.level)}`}>
                       {selectedSkill.level}
                     </span>
@@ -453,19 +458,19 @@ function Skills() {
 
         {/* Summary Stats */}
         <div className="mt-20 text-center">
-          <div className="inline-flex items-center space-x-8 px-8 py-4 bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-700/50">
+          <div className={`inline-flex items-center ${isMobile ? 'flex-col gap-4 px-6 py-6' : 'space-x-8 px-8 py-4'} bg-slate-800/70 backdrop-blur-sm rounded-2xl border border-slate-700/50`}>
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyan-400">{getTotalSkills()}</div>
+              <div className={`${isMobile ? 'text-xl' : 'text-2xl'} font-bold text-cyan-400`}>{getTotalSkills()}</div>
               <div className="text-sm text-slate-400">Technologies</div>
             </div>
-            <div className="w-px h-8 bg-slate-600/50"></div>
+            {!isMobile && <div className="w-px h-8 bg-slate-600/50"></div>}
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyan-400">{Object.keys(skillsData).length}</div>
+              <div className={`${isMobile ? 'text-xl' : 'text-2xl'} font-bold text-cyan-400`}>{Object.keys(skillsData).length}</div>
               <div className="text-sm text-slate-400">Categories</div>
             </div>
-            <div className="w-px h-8 bg-slate-600/50"></div>
+            {!isMobile && <div className="w-px h-8 bg-slate-600/50"></div>}
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyan-400">2+</div>
+              <div className={`${isMobile ? 'text-xl' : 'text-2xl'} font-bold text-cyan-400`}>2+</div>
               <div className="text-sm text-slate-400">Years Learning</div>
             </div>
           </div>
